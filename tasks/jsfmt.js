@@ -18,8 +18,7 @@ module.exports = function (grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       format: true,
-      rewrite: [],
-      validate: false
+      rewrite: []
     });
 
     function handleFile(file) {
@@ -40,11 +39,8 @@ module.exports = function (grunt) {
             results = jsfmt.rewrite(results, rule);
           });
         }
-        if (options.validate) {
-          return jsfmt.validate(results);
-        }
         if (options.format) {
-          return jsfmt.format(results);
+          results = jsfmt.format(results);
         }
         return results;
       });
